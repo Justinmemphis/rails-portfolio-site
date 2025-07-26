@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Portfolio Blog</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <nav>
+      <% if logged_in? %>
+        Logged in as <%= current_user.email %> |
+        <%= link_to 'New Post', new_post_path %> |
+        <%= link_to 'Logout', logout_path, method: :delete %>
+      <% else %>
+        <%= link_to 'Sign Up', new_user_path %> |
+        <%= link_to 'Login', login_path %>
+      <% end %>
+    </nav>
+
+    <% if notice %>
+      <p class="notice"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert"><%= alert %></p>
+    <% end %>
+
+    <%= yield %>
+  </body>
+</html>

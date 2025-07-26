@@ -1,0 +1,9 @@
+<h1>Blog Posts</h1>
+
+<% @posts.each do |post| %>
+  <article>
+    <h2><%= link_to post.title, post_path(post) %></h2>
+    <p><%= truncate(post.body, length: 200) %></p>
+    <p><em>Published <%= time_ago_in_words(post.created_at) %> ago by <%= post.user.email %></em></p>
+  </article>
+<% end %>
